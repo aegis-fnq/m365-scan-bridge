@@ -1,0 +1,22 @@
+[Unit]
+Description=m365-scan-bridge (SMTP in, Microsoft Graph out)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=m365-scan-bridge
+Group=m365-scan-bridge
+ExecStart=/opt/m365-scan-bridge/.venv/bin/m365-scan-bridge /etc/m365-scan-bridge/config.toml
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadOnlyPaths=/etc/m365-scan-bridge
+CapabilityBoundingSet=
+# AF_UNIX for the journal and name resolution; AF_INET/6 for the printer and Graph.
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

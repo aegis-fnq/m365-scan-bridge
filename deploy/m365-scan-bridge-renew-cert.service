@@ -1,0 +1,6 @@
+[Unit]
+Description=Renew the m365-scan-bridge TLS certificate when it nears expiry
+
+[Service]
+Type=oneshot
+ExecStart=/opt/m365-scan-bridge/deploy/renew-cert.sh

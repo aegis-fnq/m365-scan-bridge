@@ -1,0 +1,47 @@
+# m365-scan-bridge settings, normally /etc/m365-scan-bridge/config.toml.
+# This file holds no secret: secrets live in the files named below. Every file named here,
+# except tls_cert_file, must be owned by the service user (m365-scan-bridge) and mode 600.
+
+# --- Microsoft 365 ---------------------------------------------------------------------------
+tenant_id = "00000000-0000-0000-0000-000000000000"   # Entra Directory (tenant) ID
+client_id = "00000000-0000-0000-0000-000000000000"   # the app registration's Application (client) ID
+sender = "scanner@example.com"                       # the one mailbox every message is sent as
+
+# --- Listener --------------------------------------------------------------------------------
+listen_host = "0.0.0.0"                              # address to listen on (default 0.0.0.0)
+listen_port = 2525                                   # set the same port on the scanner (default 2525)
+# REQUIRED, no default: IP address(es) allowed to send. Reserve the scanner's address on your router.
+allowed_clients = ["192.0.2.10"]
+log_level = "INFO"                                   # DEBUG, INFO, WARNING or ERROR
+
+# --- Limits ----------------------------------------------------------------------------------
+max_messages_per_hour = 60                           # 1 to 10000
+max_recipients_per_hour = 200                        # 1 to 10000
+max_recipients_per_message = 50                      # 1 to 500, and no more than the hourly figure
+# sharepoint_max_bytes = 104857600                   # largest file filed in SharePoint (max 262144000)
+
+# --- Alerts (optional) -----------------------------------------------------------------------
+# After this many delivery failures in a row, an alert is emailed (at most hourly) through the
+# same Graph path, so it can fail too. Leave alert_address out to turn alerts off.
+alert_address = "admin@example.com"
+alert_after_failures = 3                             # 1 to 100
+
+[smtp]
+# The scanner logs in with these over STARTTLS.
+username = "scanner"
+password_file = "/etc/m365-scan-bridge/smtp-password"
+tls_cert_file = "/etc/m365-scan-bridge/tls-cert.pem"  # may be world-readable
+tls_key_file = "/etc/m365-scan-bridge/tls-key.pem"
+
+[credential]
+# Exactly one of: a certificate (recommended) or a client secret.
+certificate_key_file = "/etc/m365-scan-bridge/graph-key.pem"
+certificate_thumbprint = "0123456789ABCDEF0123456789ABCDEF01234567"   # SHA-1 thumbprint, as Entra shows it
+# secret_file = "/etc/m365-scan-bridge/client-secret"
+
+# Optional: mail addressed to trigger_address has its attachments filed in SharePoint instead of
+# being emailed. Other recipients of the same message are still emailed.
+# [sharepoint]
+# trigger_address = "sharepoint@scan.invalid"   # any address the scanner accepts; never delivered as mail
+# drive_id = "b!..."                            # the document library's drive id (see README)
+# folder = "Scans"                              # folder within the library, not the library root

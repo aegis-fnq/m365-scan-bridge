@@ -1,0 +1,27 @@
+[project]
+name = "m365-scan-bridge"
+version = "0.1.0"
+description = "Lets a scanner or printer that only speaks SMTP send mail through Microsoft Graph as one mailbox, or file scans in SharePoint."
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+dependencies = [
+    "aiosmtpd>=1.4.6",
+    "msal>=1.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "cryptography"]
+
+[project.scripts]
+m365-scan-bridge = "m365_scan_bridge.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["m365_scan_bridge"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
