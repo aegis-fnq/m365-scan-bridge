@@ -5,7 +5,14 @@
       "release-type": "python",
       "package-name": "m365-scan-bridge",
       "changelog-path": "CHANGELOG.md",
-      "include-v-in-tag": true
+      "include-v-in-tag": true,
+      "extra-files": [
+        {
+          "type": "toml",
+          "path": "uv.lock",
+          "jsonpath": "$.package[?(@.name.value=='m365-scan-bridge')].version"
+        }
+      ]
     }
   }
 }
