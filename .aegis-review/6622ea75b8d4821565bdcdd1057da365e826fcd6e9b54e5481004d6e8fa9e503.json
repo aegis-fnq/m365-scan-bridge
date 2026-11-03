@@ -1,0 +1,51 @@
+{
+  "diff_key": "6622ea75b8d4821565bdcdd1057da365e826fcd6e9b54e5481004d6e8fa9e503",
+  "base": "main",
+  "recorded_at": "2026-11-02T22:26:18Z",
+  "findings": 11,
+  "high": 2,
+  "medium": 2,
+  "low": 7,
+  "open_high": 0,
+  "deferred": [
+    {
+      "severity": "low",
+      "title": "renew-cert.sh restarts the service and can cut off an SMTP session in progress",
+      "location": "deploy/renew-cert.sh"
+    },
+    {
+      "severity": "low",
+      "title": "make-ca.sh valid_ip accepts some malformed IPv6 strings (openssl then errors)",
+      "location": "deploy/make-ca.sh"
+    }
+  ],
+  "reviewer": "code-review",
+  "contradicts": [],
+  "supersedes": [],
+  "class": "S4",
+  "base_class": "S4",
+  "layers_run": {
+    "blind-hunter": "ran",
+    "edge-case-hunter": "ran",
+    "security": "ran",
+    "harness-security-review": "skipped"
+  },
+  "skipped_layers": {
+    "harness-security-review": "the session runs in C:/GithubWorkspace/aegis, not in the checkout holding the change (C:/GithubWorkspace/m365-scan-bridge.worktrees/feat-initial-release); the harness's /code-review and /security-review read their diff from the session's directory and would review none"
+  },
+  "reviewed_head": "2f9d03f8ca073fdbea29f890ef12030084f7f6dc",
+  "reviewed_tree": "24098fe648d4f8d6b1f0418ff8581a9b95dbeb7a",
+  "tree_clean": false,
+  "since": null,
+  "since_key": null,
+  "resolves_high": 0,
+  "full_reason": null,
+  "spec": null,
+  "pr": null,
+  "acting_account": "aegisfnq",
+  "tests_run": "none run",
+  "status_posted": {
+    "posted": false,
+    "reason": "no open pull request for 'feat/initial-release' yet"
+  }
+}
