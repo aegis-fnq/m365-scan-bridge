@@ -1,6 +1,6 @@
 [project]
 name = "m365-scan-bridge"
-version = "0.1.0"
+version = "0.2.0"
 description = "Lets a scanner or printer that only speaks SMTP send mail through Microsoft Graph as one mailbox, or file scans in SharePoint."
 license = "MIT"
 license-files = ["LICENSE"]

@@ -4,6 +4,18 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.2.0](https://github.com/aegis-fnq/m365-scan-bridge/compare/m365-scan-bridge-v0.1.0...m365-scan-bridge-v0.2.0) (2026-11-03)
+
+
+### Features
+
+* release m365-scan-bridge 0.1.0, an SMTP-to-Microsoft-Graph relay for scanners ([#1](https://github.com/aegis-fnq/m365-scan-bridge/issues/1)) ([1dc8bcf](https://github.com/aegis-fnq/m365-scan-bridge/commit/1dc8bcf049538d4b1810a8dc8038b0a90bd4d5b8))
+
+
+### Bug Fixes
+
+* **release:** bump the version in uv.lock with each release ([#3](https://github.com/aegis-fnq/m365-scan-bridge/issues/3)) ([59059d4](https://github.com/aegis-fnq/m365-scan-bridge/commit/59059d48570383dcfcca183a625f31313861ec78))
+
 ## [0.1.0] - 2026-11-03
 
 ### Added
